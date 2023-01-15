@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 import 'package:todo_list/constants/colors.dart';
@@ -6,7 +6,9 @@ import 'package:todo_list/model/todo.dart';
 
 class ToDoItem extends StatelessWidget {
   final ToDo todo;
-  const ToDoItem({ Key? key, required this.todo }) : super(key: key);
+  final onToDoChanged;
+  final onDeleteItem;
+  const ToDoItem({ Key? key, required this.todo , required this.onDeleteItem, required this.onToDoChanged}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class ToDoItem extends StatelessWidget {
       child: ListTile(
         contentPadding: EdgeInsets.symmetric(vertical: 5,horizontal: 20),
         onTap: () {
-          print('clicked on todo item');
+          onToDoChanged(todo);
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         tileColor: Colors.white,
